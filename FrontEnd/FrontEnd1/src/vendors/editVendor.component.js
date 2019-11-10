@@ -41,6 +41,7 @@ const RoleOptions =[
 
 
 const skillsMap =[
+    { value: 'pm', label: 'Project Management' },
     { value: 'dotnet', label: '.NET' },
     { value: 'android', label: 'Android' },
     { value: 'angular', label: 'Angular' },

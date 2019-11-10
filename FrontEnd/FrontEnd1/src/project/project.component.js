@@ -128,13 +128,11 @@ class ProjectList extends Component {
                       <Table className={classes.table}>
                           <TableHead>
                           <TableRow>
+                              <TableCell>Project Code</TableCell>
                               <TableCell>Project Name</TableCell>
                               <TableCell>Start Date</TableCell>
-                              <TableCell>Deadline</TableCell>
-                              <TableCell>Actual Completion Date</TableCell>
-                              <TableCell>Technologies</TableCell>
-                              <TableCell>Allocation</TableCell>
-                              <TableCell>Completion Rate</TableCell>
+                              <TableCell>Deadline</TableCell>                    
+                              <TableCell>Status</TableCell>
                               <TableCell>Action</TableCell>
                           </TableRow>
                           </TableHead>
@@ -142,12 +140,12 @@ class ProjectList extends Component {
                           {projectList.map(project => {
                               return (
                               <TableRow key={project._id}>
+                                 <TableCell>{project.projectCode}</TableCell>
                                   <TableCell>{project.projectName}</TableCell>
                                   <TableCell component="th" scope="row">
                                   {moment(project.startDate).format('YYYY-MM-DD')}
                                   </TableCell>
                                   <TableCell>{moment(project.endDate).format('YYYY-MM-DD')}</TableCell>
-                                  <TableCell>{project.actualCompletionDate? moment(project.actualCompletionDate).format('YYYY-MM-DD') : '-'}</TableCell>
                                   <TableCell>{project.type}</TableCell>
                                   <TableCell>{getFormattedEmployeeList(employeeList, project.allocation)}</TableCell>
                                   <TableCell>{project.completionRate}</TableCell>

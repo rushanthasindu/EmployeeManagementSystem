@@ -30,11 +30,24 @@ const MenuProps = {
     },
   };
 
-const skillsMap =[
-    { value: 'node', label: 'Node JS' },
-    { value: 'java', label: 'Java' },
-    { value: 'python', label: 'Python' },
+  const skillsMap =[
+    { value: 'pm', label: 'Project Management' },
+    { value: 'dotnet', label: '.NET' },
+    { value: 'android', label: 'Android' },
+    { value: 'angular', label: 'Angular' },
+    { value: 'c', label: 'C' },
+    { value: 'csharp', label: 'C#' },
+    { value: 'cpp', label: 'C++' },
+    { value: 'flutter', label: 'Flutter' },
+    { value: 'html', label: 'HTML' }, 
+    { value: 'ios', label: 'iOS' },
+    { value: 'java', label: 'JAVA' },
+    { value: 'javascript', label: 'JavaScript' },
+    { value: 'node', label: 'Node JS' },  
+    { value: 'php', label: 'PHP' },
     { value: 'react', label: 'React JS' },
+    { value: 'python', label: 'Python' },
+    { value: 'reactnative', label: 'React Native' }
 ];
 
 const styles = theme => ({
@@ -162,7 +175,7 @@ class AddEditProject extends Component {
                 
                 type1: this.props.project.technology1,
                 allocation1: this.props.project.allocation1,
-                commen1t: this.props.project.comment1,
+                comment1: this.props.project.comment1,
                
                 
                 type2: this.props.project.technology2,
@@ -175,14 +188,14 @@ class AddEditProject extends Component {
                 comment3: this.props.project.comment3,
                
                 
-                // type3: this.props.project.technology3,
-                // allocation3: this.props.project.allocation3,
-                // comment3: this.props.project.comment3,
+                type3: this.props.project.technology3,
+                allocation3: this.props.project.allocation3,
+                comment3: this.props.project.comment3,
                
                 
-                // type3: this.props.project.technology3,
-                // allocation3: this.props.project.allocation3,
-                // comment3: this.props.project.comment3,
+                type3: this.props.project.technology3,
+                allocation3: this.props.project.allocation3,
+                comment3: this.props.project.comment3,
                
                 
                 type4: this.props.project.technology4,
@@ -212,13 +225,15 @@ class AddEditProject extends Component {
                 
                 type9: this.props.project.technology9,
                 allocation9: this.props.project.allocation9,
-                comment9: this.props.project.comment9,
+                comment9: this.props.project.comment9
                
                 
       
 
         }
+       
 console.log(payload);
+// alert(payload);
         if(params.id){
             dispatch(projectAction.editProjectInfo(params.id, payload));
         }else{

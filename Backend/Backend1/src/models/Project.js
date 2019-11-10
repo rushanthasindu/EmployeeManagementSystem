@@ -37,7 +37,7 @@ const projectSchema = new mongoose.Schema({
 
   type: {
     type: String,
-     enum: ["java", "node", "react", "python"]
+    
   },
   allocation: {
     type: Array,
@@ -49,7 +49,7 @@ const projectSchema = new mongoose.Schema({
 
   type1: {
     type: String,
-     enum: ["java", "node", "react", "python"]
+    
   },
   allocation1: {
     type: Array,
@@ -61,7 +61,7 @@ const projectSchema = new mongoose.Schema({
 
   type2: {
     type: String,
-     enum: ["java", "node", "react", "python"]
+    
   },
   allocation2: {
     type: Array,
@@ -73,7 +73,7 @@ const projectSchema = new mongoose.Schema({
 
   type3: {
     type: String,
-     enum: ["java", "node", "react", "python"]
+    
   },
   allocation3: {
     type: Array,
@@ -85,7 +85,7 @@ const projectSchema = new mongoose.Schema({
 
   type4: {
     type: String,
-     enum: ["java", "node", "react", "python"]
+    
   },
   allocation4: {
     type: Array,
@@ -97,7 +97,7 @@ const projectSchema = new mongoose.Schema({
 
   type5: {
     type: String,
-     enum: ["java", "node", "react", "python"]
+    
   },
   allocation5: {
     type: Array,
@@ -109,7 +109,7 @@ const projectSchema = new mongoose.Schema({
 
   type6: {
     type: String,
-     enum: ["java", "node", "react", "python"]
+    
   },
   allocation6: {
     type: Array,
@@ -121,7 +121,7 @@ const projectSchema = new mongoose.Schema({
 
   type7: {
     type: String,
-     enum: ["java", "node", "react", "python"]
+    
   },
   allocation7: {
     type: Array,
@@ -133,7 +133,7 @@ const projectSchema = new mongoose.Schema({
 
   type8: {
     type: String,
-     enum: ["java", "node", "react", "python"]
+    
   },
   allocation8: {
     type: Array,
@@ -145,7 +145,7 @@ const projectSchema = new mongoose.Schema({
 
   type9: {
     type: String,
-     enum: ["java", "node", "react", "python"]
+    
   },
   allocation9: {
     type: Array,
