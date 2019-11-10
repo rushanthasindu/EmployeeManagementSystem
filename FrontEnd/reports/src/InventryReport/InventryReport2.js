@@ -2,8 +2,9 @@ import React from 'react';
 import {Line,Bar} from 'react-chartjs-2';
 
 class App extends React.Component {
-
-    data = {
+   constructor(props) {
+      super(props);
+    this.data = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
       datasets: [
         {
@@ -29,31 +30,30 @@ class App extends React.Component {
         }
       ]
     };
-    state = {
+    this.state = {
+      data1: '',
       data: '',
       dl:[]
    }
+}
     componentDidMount(){
-       const dataList= [];
-       //const dataList= data.map (nextData)
+      fetch('http://192.168.8.100:3001/app', {
+         method: 'GET'
+      })
+      .then((response) => response.json())
+      .then((responseJson) => {
+         //console.log(responseJson);
+         this.setState({
+            data1: responseJson
+         })
+         console.log(this.state.data1.s1);
+         
+      })
+      .catch((error) => {
+         console.error(error);
+      });
       
-       fetch('http://192.168.8.100:3001/app', {
-            method: 'GET'
-         })
-         .then((response) => response.json())
-         .then((responseJson) => {
-            //console.log(responseJson);
-            this.setState({
-               
-               dataList: responseJson
-            })
-         })
-         .catch((error) => {
-            console.error(error);
-         });
-   
-         console.log(dataList);
-         this.data.datasets.data=dataList;
+       
     }
 
      BarGraph=(props)=>{
@@ -70,14 +70,13 @@ class App extends React.Component {
             
             data: responseJson
          })
-         // console.log(responseJson[0].s1);
+         console.log(this.state.data[0].s1);
          dataList.push(parseInt(responseJson[props.id].s1));
          dataList.push(parseInt(responseJson[props.id].s2));
          dataList.push(parseInt(responseJson[props.id].s3));
          dataList.push(parseInt(responseJson[props.id].s4));
          dataList.push(parseInt(responseJson[props.id].s5));
-         this.setState({
-            
+         this.setState({ 
             dl: dataList
          })
       })
@@ -156,7 +155,7 @@ class App extends React.Component {
     <thead>
     <tr>
       <th>Downloads</th>
-      <td>{0}</td>
+      <td>{this.state.data1.downloads}</td>
     </tr>
     <tr>
       
