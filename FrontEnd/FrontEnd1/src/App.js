@@ -10,7 +10,9 @@ import { ApproveLeave } from './leaves/approveLeave.component';
 import { EditVendor } from './vendors/editVendor.component';
 import { AddEditProject } from './project/addEditProject.component';
 import  { Login } from './login/';
+import  { Logout } from './login/Logout';
 import { Profile } from './vendors/profile.component';
+import { Home } from './home/home.component';
 import { history } from './_helpers';
 import { PrivateRoute } from './_components';
 
@@ -22,7 +24,9 @@ class App extends Component {
         <Router history={history}>
           <div>            
               <Switch>
-                <PrivateRoute exact path='/home' component={Profile} />
+                <PrivateRoute exact path='/home' component={Home} />
+                <PrivateRoute exact path='/profile' component={Profile} />
+                <PrivateRoute exact path='/logout' component={Logout} />
                 <PrivateRoute exact path='/vendor' component={Vendor} />
                 <PrivateRoute exact path='/leave' component={LeaveList} />
                 <PrivateRoute exact path='/project' component={ProjectList} />

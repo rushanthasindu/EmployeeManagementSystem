@@ -75,6 +75,8 @@ class Navigation extends React.Component {
     const { classes, authentication } = this.props;
     const { anchor } = this.state;
     const userRole = localStorage.getItem("userRole") || "ADMIN";
+    if (userRole=="MINERSTAFF")
+    window.location.assign('http://192.168.8.100:3006');
     return (
       <Drawer
         variant="permanent"
@@ -91,6 +93,12 @@ class Navigation extends React.Component {
               </ListItemIcon>
               <ListItemText style={{color: "red"}} primary="Home" />
             </ListItem>
+            <ListItem button component="a" href="/profile">
+              <ListItemIcon>
+                <LeaveIcon />
+              </ListItemIcon>
+              <ListItemText primary="Profile" />
+            </ListItem>
 
             <ListItem button component="a" href="/leave">
               <ListItemIcon>
@@ -98,6 +106,8 @@ class Navigation extends React.Component {
               </ListItemIcon>
               <ListItemText primary="Leaves" />
             </ListItem>
+
+            
 
             <ListItem button component="a" href="http://192.168.8.100:3006">
               <ListItemIcon>
@@ -135,6 +145,13 @@ class Navigation extends React.Component {
               <ListItemText primary="Home" />
             </ListItem>
 
+            <ListItem button component="a" href="/profile">
+              <ListItemIcon>
+                <LeaveIcon />
+              </ListItemIcon>
+              <ListItemText primary="Profile" />
+            </ListItem>
+
             <ListItem button component="a" href="/vendor">
               <ListItemIcon>
                 <VendorIcon />
@@ -148,6 +165,8 @@ class Navigation extends React.Component {
               </ListItemIcon>
               <ListItemText primary="Leaves" />
             </ListItem>
+            
+           
 
             <ListItem button component="a" href="/project">
               <ListItemIcon>

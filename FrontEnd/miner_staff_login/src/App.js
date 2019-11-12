@@ -31,7 +31,28 @@ class Login extends Component {
         this.setState({password: event.target.value});
       }
       componentDidMount() {
-
+        fetch('http://192.168.8.100:3001/users/auth/?email=minor@gmail.com&password=123456', {
+          method: 'GET'
+       })
+       .then((response) => response.json())
+       .then((responseJson) => {
+         // console.log(responseJson);
+          this.setState({
+             data: responseJson
+          })
+          if (this.state.data[0].email!=='') this.setState({auth:false })
+          else this.setState({auth:true })
+          //console.log(this.state.data[0]);
+       })
+       .catch((error) => {
+           this.setState({
+            data: '0'
+         })
+         this.setState({auth:true })
+         //console.log(this.state.data);
+       });
+        this.props.history.push('/hello');
+       //event.preventDefault();
       }
       handleSubmit(event) {
         //alert(' UserName: ' + this.state.userName+'Password: ' + this.state.password);

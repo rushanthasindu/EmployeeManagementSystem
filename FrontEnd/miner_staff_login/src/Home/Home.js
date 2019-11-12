@@ -86,6 +86,9 @@ class Home extends React.Component {
     } else {
       return (
         <div>
+          <div>
+            <a href="http://192.168.8.100:3000/logout">Logout</a>
+          </div>
           <div class="card">
           <div >
         <h1>Add New Inventry...</h1>

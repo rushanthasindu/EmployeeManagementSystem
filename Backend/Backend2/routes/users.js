@@ -49,6 +49,16 @@ router.get('/auth', function(req, res, next) {
   });
    
 });
+var makeid=(length)=> {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
 
 router.get('/resetPassword', function(req, res, next) {
   
@@ -56,7 +66,8 @@ router.get('/resetPassword', function(req, res, next) {
     email:req.query.email,
  };
   
-var pw=Math.random();   
+ 
+var pw=makeid(10);   
 
  MongoClient.connect(url, function(err, db) {
   if (err) throw err;
@@ -97,7 +108,7 @@ transporter.sendMail(mailOptions, function(error, info){
   }
 });
  
-   
+// }
 });
 
 module.exports = router;

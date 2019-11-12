@@ -35,8 +35,8 @@ const allocationOptions =[
 
 const RoleOptions =[
     { value: 'GM', label: 'Project Manager' },
-    { value: 'EMPLOYEE', label: 'Employee' },
-    { value: 'MINERSTAFF', label: 'Miner Staff' },
+    { value: 'HRM', label: 'HR Manager' },
+    { value: 'EMPLOYEE', label: 'Employee' }
 ];
 
 const religionOptions =[
@@ -49,6 +49,7 @@ const religionOptions =[
 
 
 const skillsMap =[
+    { value: 'none', label: 'None' },
     { value: 'pm', label: 'Project Management' },
     { value: 'dotnet', label: '.NET' },
     { value: 'android', label: 'Android' },

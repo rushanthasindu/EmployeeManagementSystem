@@ -144,7 +144,10 @@ class App extends React.Component {
 
 
    render() {
+      this.state.data.map(item => (
 
+         console.log(item.shortLeave)
+      ));
      
 
       return ( 

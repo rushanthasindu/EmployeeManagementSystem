@@ -295,32 +295,10 @@ class Profile extends Component {
                                                 margin="normal"
                                             />
                                         </Grid>
-                                        <Grid item xs={6}>
-                                            <TextField
-                                                id="city"
-                                                label="City"
-                                                multiline
-                                                rowsMax="4"
-                                                className={classes.textField}
-                                                value={this.props.vendor.city || ''}
-                                                onChange={this.handleChange('city')}
-                                                margin="normal"
-                                            />
-                                        </Grid>
+                                        
                                         </Grid>
                                         <Grid container spacing={24}>
-                                        <Grid item xs={6}>
-                                            <TextField
-                                                id="country"
-                                                label="Country"
-                                                multiline
-                                                rowsMax="4"
-                                                className={classes.textField}
-                                                value={this.props.vendor.country || ''}
-                                                onChange={this.handleChange('country')}
-                                                margin="normal"
-                                            />
-                                        </Grid>
+                                        
                                         <Grid item xs={6}>
                                             <TextField
                                                 id="postalCode"

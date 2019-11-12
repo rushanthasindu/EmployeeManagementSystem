@@ -117,7 +117,7 @@ class ProjectList extends Component {
                     </Grid>
                     <Grid item xs={3} container justify="flex-end">
                       <Button variant="contained" color="primary" className={classes.button} component='a' href="/add-project">
-                        Create Project 
+                        Create Project 11
                       </Button>      
                     </Grid>
                 </Grid>

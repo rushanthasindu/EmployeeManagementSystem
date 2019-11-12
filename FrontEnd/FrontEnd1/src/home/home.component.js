@@ -48,10 +48,58 @@ const styles = theme => ({
 
 
 class Home extends Component {
+  state={
+    data:[],
+    halfDay:"",
+    shortleave:"",
+    allocated:"",
+    medical:""
 
+  }
+
+
+  componentDidMount() {
+    const userID = localStorage.getItem("userId") ;
+
+    fetch('http://192.168.8.100:3001/leave/empLeave?empId='+userID, {
+      method: 'GET'
+   })
+   .then((response) => response.json())
+   .then((responseJson) => {
+      console.log(responseJson["shortLeave"]);
+      this.setState({
+         data: responseJson
+      })
+      //console.log();
+      this.setState({
+        halfDay: responseJson["shortLeave"]
+     })
+     this.setState({
+      shortleave: responseJson["shortLeave"]
+   })
+   this.setState({
+    allocated: responseJson["shortLeave"]
+ })
+ this.setState({
+  medical: responseJson["shortLeave"]
+})
+     
+      console.log(this.state.data['shortLeave']);
+   })
+   .catch((error) => {
+       this.setState({
+        data: '0'
+     })
+     this.setState({auth:true })
+     //console.log(this.state.data);
+   });
+   
+  }
    render() {
+   
+  
      const { classes } = this.props;
-
+ 
       return (
 
         <div className={classes.root}>
@@ -61,12 +109,38 @@ class Home extends Component {
             <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <Typography>{'Home'}</Typography>
+                <table  id="items" >
+   
+                      <thead>
+
+                      <tr>
+                                <th>Allocated Leaves</th>
+                                <td>{this.state.data['allocated']}</td>
+                              </tr>
+                              <tr>
+                              <th>Short Leaves</th>
+                              <td>{this.state.data['shortLeave']}</td>
+                              </tr>
+                            <tr>
+                              <th>Halfdays</th>
+                              <td>{this.state.data['halfDay']}</td>
+                              </tr>
+                            <tr>
+                              <th>medicals</th>
+                              <td>{this.state.data['medical']}</td>
+                            </tr>
+                            
+                     
+                        </thead>
+                 </table>
             </main>
-            </div>
+         </div>
         </div>
+      
       );
    }
 }
+
   
 Home.propTypes = {
       classes: PropTypes.object.isRequired,

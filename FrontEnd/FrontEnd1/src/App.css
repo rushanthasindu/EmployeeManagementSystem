@@ -2,16 +2,13 @@
   text-align: center;
  
 }
-.background {
-  background-image: url("back.png");
-  }
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
 .App-header {
-  background-color: #222;
+  /* background-color: #222; */
   height: 1500px;
   padding: 20px;
   color: white;

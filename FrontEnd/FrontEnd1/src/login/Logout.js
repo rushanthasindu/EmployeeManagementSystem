@@ -54,7 +54,7 @@ const styles = theme => ({
   });
 
   
-class Login extends Component {
+class Logout extends Component {
 
     constructor(props){
         super(props);
@@ -67,11 +67,15 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
-        if(localStorage.getItem('auth')){
-            history.push('/home');
-        }
+      this.logout();
     }
+
+    logout = event => {
+      const { dispatch } = this.props;
+      console.log(this.props);
+      console.log(localStorage.getItem("auth"));
+      dispatch(userActions.logout());
+    };
 
     handleChange = prop => event => {
         this.setState({ [prop]: event.target.value });
@@ -162,7 +166,7 @@ class Login extends Component {
    }
 }
 
-Login.propTypes = {
+Logout.propTypes = {
     classes: PropTypes.object.isRequired,
   };
   
@@ -176,6 +180,6 @@ const mapStateToProps = (state) =>{
 
 const connectedLoginPage = withRouter(connect(mapStateToProps, null, null, {
     pure: false
-})(withStyles(styles)(Login)));
+})(withStyles(styles)(Logout)));
 
-export { connectedLoginPage as Login };
+export { connectedLoginPage as Logout };

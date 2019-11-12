@@ -42,7 +42,7 @@ const employeeSchema = new mongoose.Schema({
   },
   skills: {
     type: Array,
-    required: true
+    // required: true
   },
   createdAt: {
     type: Date,
@@ -69,7 +69,7 @@ const employeeSchema = new mongoose.Schema({
   role: {
     type: String,
     required: true,
-    enum: ["EMPLOYEE", "ADMIN", "GM"],
+    enum: ["EMPLOYEE", "ADMIN", "GM", "HRM", "MINERSTAFF"],
     default: "EMPLOYEE"
   },
   manager: {
