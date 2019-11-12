@@ -47,6 +47,7 @@ class App extends React.Component {
     </thead>
     <tbody>
           {this.state.data.map(item => (
+         item.role=='ADMIN' || item.role=='MINERSTAFF' ?(""):(
           <tr > 
             <td >
               {item.empId} 
@@ -71,7 +72,7 @@ class App extends React.Component {
               {item.role} 
           </td>
           </tr> 
-          ))} 
+          )))} 
 
    </tbody>
       

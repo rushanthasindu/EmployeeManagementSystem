@@ -80,6 +80,7 @@ const styles = theme => ({
     position: 'relative',
     width: drawerWidth,
   },
+  
  toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
@@ -141,6 +142,8 @@ class Profile extends Component {
    render() {
      const { classes } = this.props;
      const { match : {params } } = this.props;
+     const userRole = localStorage.getItem("userRole") || "ADMIN";
+
      console.log(this.props.vendor);
      
 
@@ -149,15 +152,59 @@ class Profile extends Component {
       }
       
       function EditText(props) {
-          return <Typography>{`Profile`}</Typography>;
+          return <Typography>{``}</Typography>;
       }
 
 
     function SegHeader() {
         return <EditText />;
     }
-     
-      return (
+    if (userRole=="ADMIN")
+
+    return (
+<div>
+        
+        <div className={classes.root}>
+            <div className={classes.appFrame}>
+            <AppBar/>
+            <Nav />
+            <main className={classes.content}>
+                <div className={classes.toolbar} />
+                <Grid container spacing={24}>
+                    <Grid item xs={3}>
+                        <SegHeader />
+                    </Grid>
+                    <Grid item xs={6}>
+                    </Grid>
+                    <Grid item xs={3} container justify="flex-end">                            
+                    </Grid>
+                </Grid>
+                <br />
+                <br />
+                <Grid container spacing={24}>
+                    <Grid item xs={12}>
+                        <div>
+                            <Paper className={classes.contentRoot} elevation={1}>
+                                <form className={classes.container}>
+                                    <Grid container spacing={24}>
+                                   
+                                    <h1>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;A&emsp;&emsp;D&emsp;&emsp;M&emsp;&emsp;I&emsp;&emsp;N</h1>
+                                    </Grid>
+                                    
+
+                                </form>
+                            </Paper>
+                        </div>
+                    </Grid>
+                </Grid>
+            </main>
+            </div>
+        </div>
+        
+        </div>
+      );
+
+    else  return (
 
         <div>
         
@@ -184,6 +231,18 @@ class Profile extends Component {
                             <Paper className={classes.contentRoot} elevation={1}>
                                 <form className={classes.container}>
                                     <Grid container spacing={24}>
+                                    <Grid item xs={6}>
+                                            <TextField
+                                                id="empId"
+                                                label="Employee ID"
+                                                multiline
+                                                rowsMax="4"
+                                                //className={classes.textField}
+                                                value={this.props.vendor.empId || ''}
+                                                onChange={this.handleChange('empId')}
+                                                //margin="normal"
+                                            />
+                                    </Grid>
                                     <Grid item xs={6}>
                                             <TextField
                                                 id="firstName"
@@ -255,19 +314,7 @@ class Profile extends Component {
                                        
                                     </Grid>
                                     <Grid container spacing={24}>
-                                     <Grid item xs={6}>
-                                            <TextField
-                                                disabled
-                                                id="reliability"
-                                                label="Reliability"
-                                                multiline
-                                                rowsMax="4"
-                                                className={classes.textField}
-                                                value={this.props.vendor.reliability}
-                                                onChange={this.handleChange('reliability')}
-                                                margin="normal"
-                                            />
-                                        </Grid>
+                                     
                                         <Grid item xs={6}>
                                             <TextField
                                                 disabled

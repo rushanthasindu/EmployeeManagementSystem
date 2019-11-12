@@ -85,6 +85,8 @@ class Navigation extends React.Component {
         }}
         anchor={anchor}
       >
+
+        
         {userRole === "EMPLOYEE" ? (
           <List component="nav" >
             <ListItem button component="a" href="/home">
@@ -109,21 +111,7 @@ class Navigation extends React.Component {
 
             
 
-            <ListItem button component="a" href="http://192.168.8.100:3006">
-              <ListItemIcon>
-                <LeaveIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inventry" />
-            </ListItem>
-
-            <ListItem button component="a" href="http://192.168.8.100:5000">
-              <ListItemIcon>
-                <LeaveIcon />
-              </ListItemIcon>
-              <ListItemText primary="Reports" />
-            </ListItem>
-
-
+           
             <ListItem
               button
               onClick={event => {
@@ -156,7 +144,7 @@ class Navigation extends React.Component {
               <ListItemIcon>
                 <VendorIcon />
               </ListItemIcon>
-              <ListItemText primary="Employees" />
+              <ListItemText primary="Staff" />
             </ListItem>
 
             <ListItem button component="a" href="/leave">
@@ -174,6 +162,16 @@ class Navigation extends React.Component {
               </ListItemIcon>
               <ListItemText primary="Projects" />
             </ListItem>
+
+
+            <ListItem button component="a" href="http://192.168.8.100:5000">
+              <ListItemIcon>
+                <LeaveIcon />
+              </ListItemIcon>
+              <ListItemText primary="Reports" />
+            </ListItem>
+
+
 
             <ListItem
               button

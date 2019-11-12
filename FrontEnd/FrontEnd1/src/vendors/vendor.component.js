@@ -135,58 +135,18 @@ class Vendor extends Component {
                 <br />
                 <Grid container spacing={24}>
                   <Paper className={classes.root}>
-                    <h2 style={{textAlign: 'left'}}>ADMIN</h2>
-                      <Table className={classes.table}>
-                          <TableHead>
-                          <TableRow >
-                              <StyledTableCell>Employee ID</StyledTableCell>
-                              <StyledTableCell>First Name</StyledTableCell>
-                              <StyledTableCell>Last Name</StyledTableCell>
-                              <StyledTableCell>Email</StyledTableCell>
-                              <StyledTableCell numeric>Project</StyledTableCell>
-                              <StyledTableCell numeric>Reliability</StyledTableCell>
-                              <StyledTableCell>Status</StyledTableCell>
-                              <StyledTableCell>Action</StyledTableCell>
-                          </TableRow>
-                          </TableHead>
-                          <TableBody>
-                          {vendor.map(employee => {
-                            if (employee.role=="ADMIN"){
-                              return (
-                              <TableRow key={employee._id}>
-                                <TableCell component="th" scope="row">
-                                  {employee.empId}
-                                  </TableCell>
-                                  <TableCell component="th" scope="row">
-                                  {employee.firstName}
-                                  </TableCell>
-                                  <TableCell>{employee.lastName}</TableCell>
-                                  <TableCell email>{employee.email}</TableCell>
-                                  <TableCell numeric>{employee.numOfProject}</TableCell>
-                                  <TableCell numeric>{employee.reliability}</TableCell>
-                                  <TableCell>{employee.status}</TableCell>
-                                  <TableCell>
-                                    <IconButton className={classes.button} aria-label="Edit" component='a' href={`/edit-vendor/${employee._id}`}>
-                                      <EditIcon />
-                                    </IconButton>
-                                    
-                                  </TableCell>
-                              </TableRow>
-                              );
-                            }
-                          })}
-                          </TableBody>
-                      </Table>
+                   
+                      
                       <h2 style={{textAlign: 'left'}}>Project Manager</h2>
                       <Table className={classes.table}>
                           <TableHead>
                           <TableRow >
-                              <StyledTableCell>Employee ID</StyledTableCell>
+                              <StyledTableCell>Staff ID</StyledTableCell>
                               <StyledTableCell>First Name</StyledTableCell>
                               <StyledTableCell>Last Name</StyledTableCell>
                               <StyledTableCell>Email</StyledTableCell>
                               <StyledTableCell numeric>Project</StyledTableCell>
-                              <StyledTableCell numeric>Reliability</StyledTableCell>
+                             
                               <StyledTableCell>Status</StyledTableCell>
                               <StyledTableCell>Action</StyledTableCell>
                           </TableRow>
@@ -205,7 +165,51 @@ class Vendor extends Component {
                                   <TableCell>{employee.lastName}</TableCell>
                                   <TableCell email>{employee.email}</TableCell>
                                   <TableCell numeric>{employee.numOfProject}</TableCell>
-                                  <TableCell numeric>{employee.reliability}</TableCell>
+                                  
+                                  <TableCell>{employee.status}</TableCell>
+                                  <TableCell>
+                                    <IconButton className={classes.button} aria-label="Edit" component='a' href={`/edit-vendor/${employee._id}`}>
+                                      <EditIcon />
+                                    </IconButton>
+                                    <IconButton className={classes.button} aria-label="Delete" onClick={(event) => this.handleClick(event, employee._id)}>
+                                      <DeleteIcon />
+                                    </IconButton>
+                                  </TableCell>
+                              </TableRow>
+                              );
+                            }
+                          })}
+                          </TableBody>
+                      </Table>
+                      <h2 style={{textAlign: 'left'}}>HR Manager</h2>
+                      <Table className={classes.table}>
+                          <TableHead>
+                          <TableRow >
+                              <StyledTableCell>Staff ID</StyledTableCell>
+                              <StyledTableCell>First Name</StyledTableCell>
+                              <StyledTableCell>Last Name</StyledTableCell>
+                              <StyledTableCell>Email</StyledTableCell>
+                              <StyledTableCell numeric>Project</StyledTableCell>
+                             
+                              <StyledTableCell>Status</StyledTableCell>
+                              <StyledTableCell>Action</StyledTableCell>
+                          </TableRow>
+                          </TableHead>
+                          <TableBody>
+                          {vendor.map(employee => {
+                            if (employee.role=="HRM"){
+                              return (
+                              <TableRow key={employee._id}>
+                                <TableCell component="th" scope="row">
+                                  {employee.empId}
+                                  </TableCell>
+                                  <TableCell component="th" scope="row">
+                                  {employee.firstName}
+                                  </TableCell>
+                                  <TableCell>{employee.lastName}</TableCell>
+                                  <TableCell email>{employee.email}</TableCell>
+                                  <TableCell numeric>{employee.numOfProject}</TableCell>
+                                  
                                   <TableCell>{employee.status}</TableCell>
                                   <TableCell>
                                     <IconButton className={classes.button} aria-label="Edit" component='a' href={`/edit-vendor/${employee._id}`}>
@@ -225,12 +229,12 @@ class Vendor extends Component {
                       <Table className={classes.table}>
                           <TableHead>
                           <TableRow >
-                              <StyledTableCell>Employee ID</StyledTableCell>
+                              <StyledTableCell>Staff ID</StyledTableCell>
                               <StyledTableCell>First Name</StyledTableCell>
                               <StyledTableCell>Last Name</StyledTableCell>
                               <StyledTableCell>Email</StyledTableCell>
                               <StyledTableCell numeric>Project</StyledTableCell>
-                              <StyledTableCell numeric>Reliability</StyledTableCell>
+                             
                               <StyledTableCell>Status</StyledTableCell>
                               <StyledTableCell>Action</StyledTableCell>
                           </TableRow>
@@ -249,7 +253,7 @@ class Vendor extends Component {
                                   <TableCell>{employee.lastName}</TableCell>
                                   <TableCell email>{employee.email}</TableCell>
                                   <TableCell numeric>{employee.numOfProject}</TableCell>
-                                  <TableCell numeric>{employee.reliability}</TableCell>
+                                 
                                   <TableCell>{employee.status}</TableCell>
                                   <TableCell>
                                     <IconButton className={classes.button} aria-label="Edit" component='a' href={`/edit-vendor/${employee._id}`}>

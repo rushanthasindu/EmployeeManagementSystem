@@ -20,17 +20,17 @@ class Home extends Component {
       <div>
     
           <button >
-            <Link to="/EmpReport">EmpReport</Link>
+            <Link to="/EmpReport">Employee Report</Link>
           </button>
           <button>
-            <Link to="/LeaveReport">Leave Report</Link>
+            <Link to="/LeaveReport">Leave Report 1</Link>
           </button>
           <button>
-            <Link to="/InventryReport">Inventry Report</Link>
+            <Link to="/InventryReport">Inventry Report </Link>
           </button>
 
           <button>
-            <Link to="/EmpReport2">Emp Report 2</Link>
+            <Link to="/EmpReport2">Project Report</Link>
           </button>
           <button>
             <Link to="/LeaveReport2">Leave Report 2</Link>
@@ -38,6 +38,12 @@ class Home extends Component {
           <button>
             <Link to="/InventryReport2">Inventry Report 2 </Link>
           </button>
+          <div>
+            <a href="http://192.168.8.100:3000/logout">Logout</a>
+          </div>
+          <div>
+            <a href="http://192.168.8.100:3000/">Home</a>
+          </div>
          
     
 

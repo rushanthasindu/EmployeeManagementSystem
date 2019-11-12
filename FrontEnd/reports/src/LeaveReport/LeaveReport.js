@@ -25,6 +25,26 @@ class App extends React.Component {
         })
         });
         
+
+        fetch('http://192.168.8.100:8000/employee/', {
+      method: 'GET'
+   })
+   .then((response) => response.json())
+   .then((responseJson) => {
+      //console.log(responseJson);
+            this.setState({
+               data1: responseJson
+            })
+         //console.log(this.state.data);
+         })
+         .catch((error) => {
+            this.setState({
+            data1: '0'
+         })
+         });
+
+
+        
         }
         getEmp(id) {
          //alert(' UserName: ' + this.state.userName+'Password: ' + this.state.password);
@@ -71,7 +91,9 @@ class App extends React.Component {
               {item.employeeId} 
           </td>
           <td >
-              {item.firstName}  {item.lastName} 
+              {this.state.data1.map(item2 => (
+                        item2._id==item.employeeId?(item2.firstName , item2.lastName):(<p></p>)
+                       ))   } 
           </td>
           <td >
               {item.leaveStart} 

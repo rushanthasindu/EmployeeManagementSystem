@@ -323,7 +323,7 @@ class AddVendor extends Component {
                                         </Grid>
                                         <Grid item xs={6}>
                                    
-                                    <InputLabel htmlFor="select-multiple">Skills</InputLabel>
+                                    <InputLabel htmlFor="select-multiple">Related Skills</InputLabel>
                                         <Select
                                             multiple
                                             value={this.props.vendor.skills || []}
@@ -341,18 +341,8 @@ class AddVendor extends Component {
                                        
                                     </Grid>
                                     <Grid container spacing={24}>
-                                     <Grid item xs={6}>
-                                            <TextField
-                                                id="reliability"
-                                                label="Reliability"
-                                                multiline
-                                                rowsMax="4"
-                                                className={classes.textField}
-                                                value={this.props.vendor.reliability}
-                                                onChange={this.handleChange('reliability')}
-                                                margin="normal"
-                                            />
-                                        </Grid>
+                                     
+                                        
                                         <Grid item xs={6}>
                                             <TextField
                                                 id="numOfProject"

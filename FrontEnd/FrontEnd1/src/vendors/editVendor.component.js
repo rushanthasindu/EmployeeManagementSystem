@@ -210,6 +210,18 @@ class EditVendor extends Component {
                                     <Grid container spacing={24}>
                                     <Grid item xs={6}>
                                             <TextField
+                                                id="empId"
+                                                label="Employee ID"
+                                                multiline
+                                                rowsMax="4"
+                                                //className={classes.textField}
+                                                value={this.props.vendor.empId || ''}
+                                                onChange={this.handleChange('empId')}
+                                                //margin="normal"
+                                            />
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                            <TextField
                                                 id="firstName"
                                                 label="First Name"
                                                 multiline
@@ -282,7 +294,7 @@ class EditVendor extends Component {
                                         </Grid>
                                         <Grid item xs={6}>
                                    
-                                    <InputLabel htmlFor="select-multiple">Skills</InputLabel>
+                                    <InputLabel htmlFor="select-multiple">Related Skills</InputLabel>
                                         <Select
                                             multiple
                                             value={this.props.vendor.skills || []}
@@ -300,19 +312,7 @@ class EditVendor extends Component {
                                        
                                     </Grid>
                                     <Grid container spacing={24}>
-                                     <Grid item xs={6}>
-                                            <TextField
-                                                disabled
-                                                id="reliability"
-                                                label="Reliability"
-                                                multiline
-                                                rowsMax="4"
-                                                className={classes.textField}
-                                                value={this.props.vendor.reliability}
-                                                onChange={this.handleChange('reliability')}
-                                                margin="normal"
-                                            />
-                                        </Grid>
+                                     
                                         <Grid item xs={6}>
                                             <TextField
                                                 id="numOfProject"

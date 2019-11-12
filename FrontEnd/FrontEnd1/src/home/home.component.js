@@ -6,7 +6,8 @@ import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '../_components/appbar';
 import Nav from '../_components/nav'; 
-import { blackColor } from '../styles/material-dashboard-react';
+import { blackColor, whiteColor } from '../styles/material-dashboard-react';
+import logo from './giphy admin.gif'; // with import
 
 
 const drawerWidth = 240;
@@ -41,7 +42,7 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    backgroundColor: blackColor,
+    backgroundColor: whiteColor,
     padding: theme.spacing.unit * 3,
   },
 });
@@ -93,13 +94,33 @@ class Home extends Component {
      this.setState({auth:true })
      //console.log(this.state.data);
    });
-   
-  }
+        
+  } 
    render() {
    
   
      const { classes } = this.props;
+     
+    const userRole = localStorage.getItem("userRole") || "ADMIN";
+
+    if (userRole=="ADMIN")
+    return (
+
+      <div className={classes.root}>
+          <div className={classes.appFrame}>
+          <AppBar/>
+          <Nav />
+          <main className={classes.content}>
+              <div className={classes.toolbar} />
+              
+              <img src={logo}  height="600px"/>
+          </main>
+       </div>
+      </div>
+    
+    );
  
+    else
       return (
 
         <div className={classes.root}>

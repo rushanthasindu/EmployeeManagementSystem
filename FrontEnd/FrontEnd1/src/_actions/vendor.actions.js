@@ -107,6 +107,7 @@ export function editVendorsDetails(vendor){
     return{
         type: "VENDOR_DETAIL",
         id: vendor._id,
+        empId: vendor.empId,
         firstName: vendor.firstName,
         lastName: vendor.lastName,
         address: vendor.address,

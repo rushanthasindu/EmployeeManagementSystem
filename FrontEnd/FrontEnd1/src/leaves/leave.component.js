@@ -21,6 +21,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import { withRouter } from 'react-router-dom';
 
+
 const drawerWidth = 240;
 
 
@@ -91,6 +92,8 @@ class LeaveList extends Component {
    render() {
      const { classes, userRole, userId } = this.props;
      const { leaveList } = this.props.leave;
+    //  const userRole = localStorage.getItem("userRole") || "ADMIN";
+
      
       return (
         <div className={classes.root}>
@@ -129,7 +132,7 @@ class LeaveList extends Component {
                     </Grid>
                     <Grid item xs={3}>
                       {
-                        (userRole !== 'EMPLOYEE' ||userRole !== 'MINERSTAFF') ? 
+                        (userRole !== 'EMPLOYEE') ? 
                           <Button variant="contained" color="primary" className={classes.button} component='a' href="/approve-leave">
                             Approve Leaves 
                           </Button> : ''
