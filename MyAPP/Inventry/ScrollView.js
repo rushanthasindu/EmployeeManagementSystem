@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Text, Image, View, StyleSheet, ScrollView } from 'react-native';
+import { Text, Image, View, StyleSheet, ScrollView ,TouchableOpacity} from 'react-native';
+import Modal, { ModalContent } from 'react-native-modals';
 
 class ScrollViewExample extends Component {
    state = {
@@ -17,16 +18,21 @@ class ScrollViewExample extends Component {
          {'name': 'Steve', 'id': 11},
          {'name': 'Olivia', 'id': 12}
       ],
-      items:[]
+      items:[],
+      visible:false
+      
+   }
+   alertItemName = (item) => {
+      alert(item.description)
    }
 
    componentDidMount = () => {
-      fetch('http://192.168.8.100/inventry/', {
+      fetch('http://192.168.8.100:3001/inventry/', {
          method: 'GET'
       })
       .then((response) => response.json())
       .then((responseJson) => {
-         console.log(responseJson);
+         //console.log(responseJson);
          this.setState({
             items: responseJson
          })
@@ -34,22 +40,25 @@ class ScrollViewExample extends Component {
       .catch((error) => {
          console.error(error);
       });
+      console.log(this.state.items);
    }
 
 
    render() {
       return (
          <View>
-            <ScrollView>
-               {
-                  this.state.items.map((item, index) => (
-                     console.log(item.itemCode)
-                     // <View key = {item.itemCode} style = {styles.item}>
-                     //    <Text>{item.description}</Text>
-                     // </View>
-                 ))
-               }
-            </ScrollView>
+            {
+               this.state.items.map((item, index) => (
+                  <TouchableOpacity
+                     key = {index}
+                     style = {styles.item}
+                     onPress = {() => this.alertItemName(item)}>
+                     <Text style = {styles.text}>
+                        {item.description}
+                     </Text>
+                  </TouchableOpacity>
+               ))
+            }
          </View>
       )
    }
@@ -66,5 +75,8 @@ const styles = StyleSheet.create ({
       borderColor: '#2a4944',
       borderWidth: 1,
       backgroundColor: '#d2f7f1'
+   },
+   text: {
+      color: '#4f603c'
    }
 })

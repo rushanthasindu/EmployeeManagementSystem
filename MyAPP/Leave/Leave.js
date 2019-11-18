@@ -11,10 +11,13 @@ import { Actions } from 'react-native-router-flux';
 import {AsyncStorage} from 'react-native';
 import axios from 'axios'
 import LeaveForm from "./LeaveForm"
+import Test from "./Test"
 
 const Leave = (empId) => {
+   console.log(empId.data);
  return (
-   <LeaveForm/>
+    <LeaveForm id={empId.data}/>
+   // <Test/>
       );
    
             }

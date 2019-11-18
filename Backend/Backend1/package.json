@@ -8,8 +8,7 @@
     "start": "nodemon server.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AchiniP/hr-api.git"
+    "type": "git"
   },
   "keywords": [
     "node",
@@ -17,10 +16,7 @@
   ],
   "author": "achini hettiarachchi",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AchiniP/hr-api/issues"
-  },
-  "homepage": "https://github.com/AchiniP/hr-api#readme",
+  
   "dependencies": {
     "async-middleware": "^1.2.1",
     "bcrypt": "^3.0.6",

@@ -11,21 +11,7 @@ import {
  import { SocialIcon } from 'react-native-elements'
 const Home = (empId) => {
 
-//   const retrieveData = async (v) => {
-  
-//       try {
-//         const value = await AsyncStorage.getItem(v);
-//         if (value !== null) {
-//           // We have data!!
-//           console.log(value);
-        
-//         }
-//       } catch (error) {
-//         // Error retrieving data
-//       } 
-//       return value;
-//     };
-  // console.log(retrieveData('TASKS'));
+  console.log(empId.data);
    const goToLeave = () => {
       Actions.leave(empId.data)
    }
@@ -39,6 +25,10 @@ const Home = (empId) => {
 //    onPress = {goToAbout}  style = {{ margin: 128 }}
    return (
       <View style = {styles.container}  >
+
+
+   <Text style={{color: 'white', fontSize: 20,}}>{empId.dat}</Text>
+
          <Image source = {require('./logo.png')} />
 
          {/* <TouchableOpacity onPress = {goToLeave} >

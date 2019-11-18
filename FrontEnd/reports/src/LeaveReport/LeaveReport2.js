@@ -18,7 +18,7 @@ class App extends React.Component {
 
   componentDidMount() {
    //alert(' UserName: ' + this.state.userName+'Password: ' + this.state.password);
-   fetch('http://192.168.8.100:8000/employee/', {
+   fetch('http://192.168.8.100:3001/leave/empLeaveList', {
      method: 'GET'
   })
   .then((response) => response.json())
@@ -37,74 +37,13 @@ class App extends React.Component {
         
         }
 
-  func1(id){
+ 
    
-    fetch('http://192.168.8.100:3001/leave/empLeave?empId='+id, {
-      method: 'GET'
-   })
-   .then((response) => response.json())
-   .then((responseJson) => {
-      console.log(responseJson["shortLeave"]);
-      this.setState({
-         data1: responseJson
-      })
-      //console.log();
-      this.setState({
-        halfDay: responseJson["shortLeave"]
-     })
-     this.setState({
-      shortleave: responseJson["shortLeave"]
-   })
-   this.setState({
-    allocated: responseJson["shortLeave"]
- })
- this.setState({
-  medical: responseJson["shortLeave"]
-})
-this.setState({auth:false })
-     
-      console.log(this.state.data['shortLeave']);
-   })
-   .catch((error) => {
-   //     this.setState({
-   //      data1: '0'
-   //   })
-    
-     //console.log(this.state.data);
-   });
  
-   return (
 
+ 
+   
       
-              <table  id="items" >
- 
-                    <thead>
-
-                    <tr>
-                              <th>Allocated Leaves</th>
-                              <td>{40-this.state.data1['allocated']}</td>
-                            </tr>
-                            <tr>
-                            <th>Short Leaves</th>
-                            <td>{2-this.state.data1['shortLeave']}</td>
-                            </tr>
-                          <tr>
-                            <th>Halfdays</th>
-                            <td>{2-this.state.data1['halfDay']}</td>
-                            </tr>
-                          <tr>
-                            <th>medicals</th>
-                            <td>{3-this.state.data1['medical']}</td>
-                          </tr>
-                          
-                   
-                      </thead>
-               </table>
-        
-    
-    );
-   }
-
    
    BarGraph=(props)=>{
       // const dataList= [];
@@ -118,7 +57,7 @@ this.setState({auth:false })
          console.log(responseJson);
          this.setState({
             
-            data: responseJson
+            data1: responseJson
          })
         
          dataList.push(parseInt(this.state.data1['allocated']));
@@ -187,31 +126,73 @@ this.setState({auth:false })
   
    render() {
       return (
+
          <div>
+            <div>
             <table  id="items">
-    
+         {this.state.data.map(item => (
+            <tr > 
+               <td>
+                  <h3>EMPLOYEE ID : {item.employeeId}</h3>
+                  <table  id="items">
+                     <tr>
+                        <th>Allocated</th>
+                        <td> {item.allocated}</td>
+                       
+                     </tr>
+                     <tr>
+                        <th>Half Day</th>
+                        <td>{item.halfDay}</td>
+                       
+                     </tr>
+                     <tr>
+                        <th>Short Leave</th>
+                        <td>{item.shortLeave}</td>
+                       
+                     </tr>
+                     <tr>
+                        <th>Medical</th>
+                        <td>{item.medical}</td>
+                       
+                     </tr>
+                  </table>
+                  
+               </td >
+               <td >
+                  <h3>EMPLOYEE Name : {item.firstName} {item.lastName}</h3> 
+                   <this.BarGraph id={item.empId}/>
+                  </td >
+            
+            </tr>
+
+           
+         ))}
+         </table>
+           </div>  
+    {/*
     <tbody>
           {this.state.data.map(item => (
-         item.role=='ADMIN' || item.role=='MINERSTAFF' ?(""):(
+          <h3>EMPLOYEE ID : {item.empId}</h3>
+         // item.role=='ADMIN' || item.role=='MINERSTAFF' ?(""):(
           <tr > 
             <td >
-               <h3>EMPLOYEE ID : {item.empId}</h3>
+               
                <br/>
               {this.func1(item.empId)} 
           </td>
           <td > 
              <h3>EMPLOYEE ID :  {item.firstName}  {item.lastName}</h3>
-             <this.BarGraph id={item.empId}/>
-          </td>
-          </tr>
+             {/* <this.BarGraph id={item.empId}/> */}
+          {/* </td> */}
+          {/* </tr> */}
           
           
           
-          )))} 
+          {/* )))}  */}
 
-   </tbody>
+   {/* </tbody> */}
       
-          </table>
+          {/* </table> */} 
          </div>
       );
    }

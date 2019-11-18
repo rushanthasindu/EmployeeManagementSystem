@@ -19,33 +19,16 @@ export default class Login extends Component {
     goToAbout = () => {
       Actions.home()
    }
-   constructor(props) {
-    super(props);
+ 
     state = {
       email   : 'rushanthasindu10@gmail.com',
       password: 'rushan',
       empId:0,
       data: [],
       isAuth: false,
-      startDate: new Date,
-      endDate:new Date,
-      reason:'',
-      names: [
-        {'name': 'Ben', 'id': 1},
-        {'name': 'Susan', 'id': 2},
-        {'name': 'Robert', 'id': 3},
-        {'name': 'Mary', 'id': 4},
-        {'name': 'Daniel', 'id': 5},
-        {'name': 'Laura', 'id': 6},
-        {'name': 'John', 'id': 7},
-        {'name': 'Debra', 'id': 8},
-        {'name': 'Aron', 'id': 9},
-        {'name': 'Ann', 'id': 10},
-        {'name': 'Steve', 'id': 11},
-        {'name': 'Olivia', 'id': 12}
-     ]
+    
     }
-  }
+  
 
   storeEmpID = async (val) => {
       //console.log("value");
@@ -64,38 +47,40 @@ export default class Login extends Component {
     // this.retrieveData();
     // console.log("value");
     
+
+    //this.loginHandler();
     
     
-    //fetch('http://192.168.8.100:3001/users/auth/?email=rushanthasindu10@gmail.com&password=rushan', {
-    fetch('http://10.10.95.123:3001/users/auth/?email=rushanthasindu10@gmail.com&password=rushan', {
-       method: 'GET'
-    })
-    .then((response) => response.json())
-    .then((responseJson) => {
-       //console.log(responseJson);
-       this.setState({
-          data: responseJson
-       })
+    // //fetch('http://192.168.8.100:3001/users/auth/?email=rushanthasindu10@gmail.com&password=rushan', {
+    // fetch('http://10.10.95.123:3001/users/auth/?email=rushanthasindu10@gmail.com&password=rushan', {
+    //    method: 'GET'
+    // })
+    // .then((response) => response.json())
+    // .then((responseJson) => {
+    //    //console.log(responseJson);
+    //    this.setState({
+    //       data: responseJson
+    //    })
        
-       if (this.state.data[0]){
-       this. storeEmpID(this.state.data[0]._id);
-        this.setState({
-          empId: this.state.data[0]._id
-       })
-           Actions.home(this.state.empId)}
-       else  Alert.alert("ERROR", "USERNAME OR PASSWORD ERROR");
+    //    if (this.state.data[0]){
+    //    this. storeEmpID(this.state.data[0]._id);
+    //     this.setState({
+    //       empId: this.state.data[0]._id
+    //    })
+    //        Actions.home(this.state.empId)}
+    //    else  Alert.alert("ERROR", "USERNAME OR PASSWORD ERROR");
       
-    })
-    .catch((error) => {
-      this.setState({
-        data: 0
-     })
-         Alert.alert("ERROR", "ERROR IN CONNECTION");
-       //console.error(error);
-    });
+    // })
+    // .catch((error) => {
+    //   this.setState({
+    //     data: 0
+    //  })
+    //      Alert.alert("ERROR", "ERROR IN CONNECTION");
+    //    //console.error(error);
+    // });
   
 
-    //console.log(this.state.data[0]);
+    // //console.log(this.state.data[0]);
    
 
 
@@ -108,9 +93,11 @@ export default class Login extends Component {
   }
   
   loginHandler = () => {
-    //  fetch('http://192.168.1.100:3001/users/auth/?email='+this.state.email+'&password='+this.state.password+'', {
-     // fetch('http://192.168.8.100:3001/users/auth/?email=rushanthasindu10@gmail.com&password=rushan', {
-        fetch('http://192.168.8.100:3001/users/auth/?email=admin@gmail.com&password=admin123', {
+    console.log(this.state.empId);
+      fetch('http://192.168.1.100:3001/users/auth/?email='+this.state.email+'&password='+this.state.password+'', {
+    //  // fetch('http://192.168.8.100:3001/users/auth/?email=rushanthasindu10@gmail.com&password=rushan', {
+    //     // fetch('http://10.10.73.1:3001/users/auth/?email=admin@gmail.com&password=admin123', {
+    //       fetch('http://192.168.8.100:3001/users/auth/?email='+this.state.email+'&password=admin123', {
 
     method: 'GET'
     })
@@ -120,9 +107,10 @@ export default class Login extends Component {
        this.setState({
           data: responseJson
        })
-       if (this.state.data[0])  Actions.home();
+        console.log(this.state.data[0]._id);
+       if (this.state.data[0])  Actions.home('5dbd3fe6ee20652224d4f28c');
        else  Alert.alert("ERROR", "USERNAME OR PASSWORD ERROR");
-       //console.log(this.state.data[0]);
+      
     })
     .catch((error) => {
       this.setState({

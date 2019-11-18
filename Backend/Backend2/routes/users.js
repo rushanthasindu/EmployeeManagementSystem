@@ -36,6 +36,8 @@ router.get('/auth', function(req, res, next) {
   //   });
   // });
 
+  
+
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("hr");

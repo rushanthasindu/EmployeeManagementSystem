@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { 
    View,
+   Button ,
    Text, 
+   Picker,
    TouchableOpacity, 
    TextInput, 
    StyleSheet } from 'react-native'
@@ -10,18 +12,27 @@ import Login from '../Login/Login'
 import { Actions } from 'react-native-router-flux';
 import {AsyncStorage} from 'react-native';
 import axios from 'axios'
-
+import ModalDropdown from 'react-native-modal-dropdown';
 class LeaveForm extends Component {
     state = {
         empId:'0',
         startDate: new Date,
         endDate:new Date,
-        reason:''
+        reason:'',
+        user: '',
+        type:''
       }
   
    alertItemName = (item) => {
     alert(item.name)
  }
+
+
+ 
+
+ updateUser = (user) => {
+   this.setState({ user: user })
+}
 
  handleStartDate = (text) => {
     this.setState({ startDate: text })
@@ -36,7 +47,19 @@ class LeaveForm extends Component {
    componentDidMount = () => {
     this.retrieveEmpID('id');
    // console.log(this.state.empId);
+   this.setState({
+      empId: this.props.id
+   })
 
+   }
+
+   typeHandler=(index)=>{
+      if (index==0)  this.setState({type:"ALLOCATED"})
+      else if (index==1)  this.setState({type:"HALFDAY"})
+      else if (index==2)  this.setState({type:"SHORTLEAVE"})
+      else if (index==3)  this.setState({type:"MEDICAL"})
+      console.log("Test1");
+   
    }
 
 
@@ -57,51 +80,25 @@ class LeaveForm extends Component {
     } 
    
   };
- request = () => {
-
-
-    // fetch('http://192.168.8.100:3001/users/auth/?email=rushanthasindu10@gmail.com&password=rushan', {
-    //    method: 'GET'
-    // })
-    // .then((response) => response.json())
-    // .then((responseJson) => {
-    //    //console.log(responseJson);
-    //    this.setState({
-    //       data: responseJson
-    //    })
-       
-    //    if (this.state.data[0]){
-    //    this. storeEmpID(this.state.data[0]._id);
-    //     this.setState({
-    //       empId: this.state.data[0]._id
-    //    })
-    //        Actions.home(this.state.empId)}
-    //    else  Alert.alert("ERROR", "USERNAME OR PASSWORD ERROR");
-      
-    // })
-    // .catch((error) => {
-    //   this.setState({
-    //     data: 0
-    //  })
-    //      Alert.alert("ERROR", "ERROR IN CONNECTION");
-    //    //console.error(error);
-    // });
   
 
+  requestLeave=()=>{
+   console.log("Test");
 
-
-    axios.post('http://192.168.8.104:8000/leave/', {
-    //    employeeId: this.state.empId,
-    //    leaveStart:this.state.startDate,
-    //    leaveEnd:this.state.endDate,
-    //    reason: this.state.reason
-
-       employeeId: "32456789098765e4wq",
-       leaveStart:"fghjkl",
-       leaveEnd:"dfghjk",
-       reason:"hjkl;"
+   
+   axios.post('http://192.168.8.100:8000/leave/', {
+      
+         employeeId: this.state.empId,
+         status: "NonApproved",
+         approvedBy: "-",
+         type: this.state.type,
+         leaveStart:this.state.startDate,
+         leaveEnd:this.state.endDate,
+         reason: this.state.reason
+      
     },{
         "headers": {
+         "Accept": "application/json, text/plain, */*",
           'Content-Type': 'application/json',
         }
      })
@@ -111,9 +108,14 @@ class LeaveForm extends Component {
      .catch(function (error) {
        console.log(error);
      });
- }
+   }
+
 
    render() {
+
+       
+      
+      console.log(this.props.id);
       return (
         <View style = {styles.container}>
         <Text style={{color: 'white', fontSize: 20,}}>Start Date</Text>
@@ -157,25 +159,26 @@ class LeaveForm extends Component {
                 dateInput: {
                     marginLeft: 36
                 }
-                // ... You can check the source to find the other keys.
                 }}
                 onDateChange= {this.handleStartDate}/>
 
-                <TextInput style = {styles.input}
+               <Text style={{color: 'white',fontSize: 20,}}>Leave Type</Text>
+               <ModalDropdown
+               style = {styles.input}
+               options={
+                  ['Allocated', 'Half Day', 'Short Leave', 'Medical']}
+                  onSelect={(lable) => { this.typeHandler(lable); }}
+               />
+               <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Reason"
                placeholderTextColor = "#9a73ef"
                autoCapitalize = "none"
                onChangeText = {this.handleReason}/>
-            
-
-
-
-
-
-        <TouchableOpacity
+             
+       <TouchableOpacity
            style = {styles.submitButton}
-           onPress = {() => this.request()}>
+           onPress = {this.requestLeave}>
            <Text style = {styles.submitButtonText}> Submit </Text>
         </TouchableOpacity>
      </View>
