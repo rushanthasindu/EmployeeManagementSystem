@@ -7,10 +7,10 @@ import {
 } from "react-router-dom";
 import EmpReport from "../EmpReport/EmpReport"
 import LeaveReport from "../LeaveReport/LeaveReport"
-import InventryReport from "../InventryReport/InventryReport"
+
 import EmpReport2 from "../EmpReport/EmpReport2"
 import LeaveReport2 from "../LeaveReport/LeaveReport2"
-import InventryReport2 from "../InventryReport/InventryReport2"
+import AppReport2 from "../AppReport/AppReport2"
 
 
 class Home extends Component {
@@ -18,37 +18,34 @@ class Home extends Component {
   return (
     <Router>
       <div>
-    
+          <button>
+            <a href="http://192.168.8.100:3000/">Home</a>
+          </button>
           <button >
             <Link to="/EmpReport">Employee Report</Link>
           </button>
           <button>
-            <Link to="/LeaveReport">Leave Report 1</Link>
+            <Link to="/LeaveReport">Applied Leaves Report</Link>
           </button>
-          <button>
-            <Link to="/InventryReport">Inventry Report </Link>
+     <button>
+            <Link to="/LeaveReport2">Employee Leave Report</Link>
           </button>
-
           <button>
             <Link to="/EmpReport2">Project Report</Link>
           </button>
+          
           <button>
-            <Link to="/LeaveReport2">Leave Report 2</Link>
+            <Link to="/AppReport2">App Report </Link>
           </button>
           <button>
-            <Link to="/InventryReport2">Inventry Report 2 </Link>
-          </button>
-          <div>
             <a href="http://192.168.8.100:3000/logout">Logout</a>
-          </div>
-          <div>
-            <a href="http://192.168.8.100:3000/">Home</a>
-          </div>
+          </button>
+          
          
     
 
         <hr />
-
+        
         {/*
           A <Switch> looks through all its children <Route>
           elements and renders the first one whose path
@@ -63,9 +60,7 @@ class Home extends Component {
           <Route path="/LeaveReport">
            <LeaveReport />
           </Route>
-          <Route path="/InventryReport">
-             <InventryReport />
-          </Route>
+          
 
           <Route exact path="/EmpReport2">
             <EmpReport2 />
@@ -73,8 +68,8 @@ class Home extends Component {
           <Route path="/LeaveReport2">
            <LeaveReport2 />
           </Route>
-          <Route path="/InventryReport2">
-            <InventryReport2 />
+          <Route path="/AppReport2">
+            <AppReport2 />
           </Route>
         </Switch>
       </div>

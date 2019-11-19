@@ -94,6 +94,10 @@ const crOptions =[
     { value: 'COMPLEATED', label: 'Compleated' },
 ];
 class AddEditProject extends Component {
+
+    state={
+        test:false
+    }
   
     handleChange = prop => event => {
         const { dispatch } = this.props;
@@ -153,7 +157,28 @@ class AddEditProject extends Component {
     handleClick(event){
         const { match : {params } } = this.props;
         const { dispatch, authentication } = this.props;
-            
+        var dateDiff1 =   new Date(this.props.project.startDate).getTime()-new Date().getTime();    //Future date - current date
+        var dateDiff2 = new Date(this.props.project.endDate).getTime()-new Date().getTime();    //Future date - current date
+        var dateDiff3 = new Date(this.props.project.endDate).getTime() - new Date(this.props.project.startDate).getTime();    //Future date - current date
+
+      if (dateDiff1>0 && dateDiff2>0  && dateDiff3>0){
+
+        fetch('http://192.168.8.100:3001/project/inform', {
+            method: 'GET'
+         })
+         .then((response) => response.json())
+         .then((responseJson) => {
+            //console.log(responseJson);
+                  this.setState({
+                    status: responseJson
+                  })
+               //console.log(this.state.data);
+               })
+               .catch((error) => {
+                  this.setState({
+                    status: '0'
+               })
+               });
         let payload={
                // id: this.props.project._id,
                 projectId: this.props.project.projectId,
@@ -244,6 +269,8 @@ console.log(payload);
         }
     }
 
+    else alert("Please Enter a Valied Date")
+    }
 
    render() {
      const { classes } = this.props;
@@ -881,7 +908,8 @@ console.log(payload);
 
 
                                         </Grid> 
-                                        <Grid item xs={6}>
+
+                                        <Grid item xs={6} >
                                                 <TextField
                                                     id="technology9"
                                                     select
@@ -947,11 +975,12 @@ console.log(payload);
                                             <Grid item xs={6}>
                                                 
                                             </Grid> 
+                                            
                                         </Grid>
-
-
                                                 <Grid container spacing={24}>
-                                                <Grid item xs={10}>
+                                                <Grid item xs={10} 
+                                                
+                                                >
                                                 <TextField
                                                     id="status"
                                                     select

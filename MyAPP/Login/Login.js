@@ -21,8 +21,8 @@ export default class Login extends Component {
    }
  
     state = {
-      email   : 'rushanthasindu10@gmail.com',
-      password: 'rushan',
+      email   : '',
+      password: '',
       empId:0,
       data: [],
       isAuth: false,
@@ -94,9 +94,9 @@ export default class Login extends Component {
   
   loginHandler = () => {
     console.log(this.state.empId);
-      fetch('http://192.168.1.100:3001/users/auth/?email='+this.state.email+'&password='+this.state.password+'', {
+     // fetch('http://192.168.8.100:3001/users/auth/?email='+this.state.email+'&password='+this.state.password+'', {
     //  // fetch('http://192.168.8.100:3001/users/auth/?email=rushanthasindu10@gmail.com&password=rushan', {
-    //     // fetch('http://10.10.73.1:3001/users/auth/?email=admin@gmail.com&password=admin123', {
+      fetch('http://192.168.8.100:3001/users/auth/?email=admin@gmail.com&password=admin123', {
     //       fetch('http://192.168.8.100:3001/users/auth/?email='+this.state.email+'&password=admin123', {
 
     method: 'GET'
@@ -108,7 +108,7 @@ export default class Login extends Component {
           data: responseJson
        })
         console.log(this.state.data[0]._id);
-       if (this.state.data[0])  Actions.home('5dbd3fe6ee20652224d4f28c');
+       if (this.state.data[0])  Actions.home(this.state.data[0]._id);
        else  Alert.alert("ERROR", "USERNAME OR PASSWORD ERROR");
       
     })
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ba03fc',
+    backgroundColor: 'lightblue',
   },
   inputContainer: {
       borderBottomColor: '#F5FCFF',

@@ -88,7 +88,9 @@ class App extends React.Component {
              
           <tr > 
             <td >
-              {item.employeeId} 
+               {this.state.data1.map(item2 => (
+                        item2._id==item.employeeId?(item2.empId ):(<p></p>)
+                       ))   }  
           </td>
           <td >
               {this.state.data1.map(item2 => (

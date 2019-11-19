@@ -115,9 +115,9 @@ after { clear: both; }
   transition: background 0.3s ease-in-out;
 }
 button {
-  background: #b5cd60;
+  background: #537ecc;
   border: 100;
-  width: 16%;
+  width: 14%;
   height: 40px;
   border-radius: 3px;
   color: white;

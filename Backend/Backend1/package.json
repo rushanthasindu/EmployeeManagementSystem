@@ -14,7 +14,7 @@
     "node",
     "express"
   ],
-  "author": "achini hettiarachchi",
+  "author": "Rushan Jayasundara",
   "license": "ISC",
   
   "dependencies": {

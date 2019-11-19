@@ -1,4 +1,3 @@
-
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { leaveAction } from '../_actions';
@@ -66,12 +65,33 @@ const styles = theme => ({
 
 
 class ApproveLeave extends Component {
+
+  state={
+    data:[]
+  }
     
     componentDidMount() {
         const { dispatch, userId, userRole } = this.props;
-        dispatch(leaveAction.getLeaveListByManager(userId));        
+        dispatch(leaveAction.getLeaveListByManager(userId));    
+        fetch('http://192.168.8.100:8000/employee/', {
+          method: 'GET'
+       })
+       .then((response) => response.json())
+       .then((responseJson) => {
+          //console.log(responseJson);
+                this.setState({
+                   data: responseJson
+                })
+             //console.log(this.state.data);
+             })
+             .catch((error) => {
+                this.setState({
+                data: '0'
+             })
+             });
     }
     
+
       handleChange = event => {
         this.setState({
           anchor: event.target.value,
@@ -88,7 +108,7 @@ class ApproveLeave extends Component {
    render() {
      const { classes, userRole, userId } = this.props;
      const { approvalList } = this.props.leave;
-     
+     console.log(this.state.data);
       return (
         <div className={classes.root}>
             <div className={classes.appFrame}>
@@ -111,7 +131,7 @@ class ApproveLeave extends Component {
                       <Table className={classes.table}>
                           <TableHead>
                           <TableRow>
-                              <TableCell>Employee ID</TableCell>
+                              <TableCell>Employee Name</TableCell>
                               <TableCell>Leave Start</TableCell>
                               <TableCell>Leave End</TableCell>
                               <TableCell>Reason</TableCell>
@@ -124,7 +144,14 @@ class ApproveLeave extends Component {
                               return (
                               <TableRow key={leave._id}>
                                 <TableCell component="th" scope="row">
-                                  {leave.employeeId}
+                               
+                                  {
+                                      this.state.data.map(item2 => (
+                                        item2._id===leave.employeeId?(item2.firstName):(<p></p>)
+
+                                      )
+                                      )
+                                                    }  
                                   </TableCell>
                                   <TableCell component="th" scope="row">
                                   {moment(leave.leaveStart).format('YYYY-MM-DD')}
@@ -133,7 +160,7 @@ class ApproveLeave extends Component {
                                   <TableCell>{leave.reason}</TableCell>
                                   <TableCell>
                                     <IconButton className={classes.button} aria-label="Approve" onClick={(event) => this.handleClick(event, leave._id)}>
-                                      <ApproveIcon />
+                                    <Button>Approve</Button>
                                     </IconButton>
                                   </TableCell>
                               </TableRow>

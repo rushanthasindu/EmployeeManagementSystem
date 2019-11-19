@@ -9,15 +9,15 @@ router.use((req, res, next) => {
 })
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  
+  console.log("result");
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("hr");
     
-    dbo.collection("employeeleaves").find({}).toArray(function(err, result){
+    dbo.collection("projects").find({}).toArray(function(err, result){
      // dbo.collection("inventry").findOne({}, function(err, result) {
       if (err) throw err;
-      console.log(result.name);
+      
       // res.json([
       //   {id :1, email:response.email,password:response.password}
        
@@ -39,10 +39,7 @@ router.get('/', function(req, res, next) {
 router.get('/empLeave', function(req, res, next) {
     response = {
       empId:req.query.empId
- 
    };
-
-   
 
    MongoClient.connect(url, function(err, db) {
     if (err) throw err;
@@ -284,6 +281,68 @@ router.get('/empLeave', function(req, res, next) {
 
   
   });
+
+
+  
+  router.get('/inform', function(req, res, next) {
+    response = {
+      empID:req.query.projectId
+ 
+   };
+//
+   
+
+   MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("hr");
+
+ 
+      var o_id = new ObjectId(response.email);
+      var query = {_id:o_id};
+      dbo.collection("employees").findOne(query, function(err, result1) {
+        if (err) throw err;
+        // console.log(result1.email);
+        sendMail(result1.email);
+      });
+      
+      res.json([{status:true}]);
+      db.close();
+    });
+  });
+  
+  // res.json(
+  //   {allocated :allocated, medical:medical,halfDay :halfDay, shortLeave:shortLeave}
+   
+  // );
+
+
+var sendMail=(email)=>{
+  // console.log(email);
+  
+ var transporter = nodemailer.createTransport({
+  host: 'smtp.hostinger.com',
+  port: 587,
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: 'service@hotelforyou.xyz',
+    pass: 'oGxJe1jk6=oPi@2!zz'
+  }
+});
+
+var mailOptions = {
+  from: 'service@hotelforyou.xyz',
+  to: email,
+  subject: 'Project Assignned',
+  text: 'You Are Assigned To A Project. Please Login To Your Account  '
+}
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+}
 
 module.exports = router;
 

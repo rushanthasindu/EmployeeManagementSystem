@@ -132,7 +132,8 @@ class LeaveList extends Component {
                     </Grid>
                     <Grid item xs={3}>
                       {
-                        (userRole !== 'EMPLOYEE') ? 
+                        (userRole !== 'EMPLOYEE') ?
+                         
                           <Button variant="contained" color="primary" className={classes.button} component='a' href="/approve-leave">
                             Approve Leaves 
                           </Button> : ''
@@ -144,6 +145,9 @@ class LeaveList extends Component {
                 <br />
                 <Grid container spacing={24}>
                   <Paper className={classes.root}>
+
+                  {
+              
                       <Table className={classes.table}>
                           <TableHead>
                           <TableRow>
@@ -155,6 +159,7 @@ class LeaveList extends Component {
                           </TableRow>
                           </TableHead>
                           <TableBody>
+                         
                           {leaveList.map(leave => {
                               return (
                               <TableRow key={leave._id}>
@@ -169,7 +174,7 @@ class LeaveList extends Component {
                                       <EditIcon />
                                     </IconButton>
                                     <IconButton className={classes.button} aria-label="Delete" onClick={(event) => this.handleClick(event, leave._id)}>
-                                      <DeleteIcon />
+                                    <Button>Cancel</Button>
                                     </IconButton>
                                   </TableCell>
                               </TableRow>
@@ -177,6 +182,7 @@ class LeaveList extends Component {
                           })}
                           </TableBody>
                       </Table>
+   }
                   </Paper>
                 </Grid>
             </main>

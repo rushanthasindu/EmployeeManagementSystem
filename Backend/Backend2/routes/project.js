@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
+var ObjectId = require('mongodb').ObjectId;
+var nodemailer = require('nodemailer');
+
 
 router.use((req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*')
@@ -14,10 +17,10 @@ router.get('/', function(req, res, next) {
     if (err) throw err;
     var dbo = db.db("hr");
     
-    dbo.collection("employeeleaves").find({}).toArray(function(err, result){
+    dbo.collection("projects").find({}).toArray(function(err, result){
      // dbo.collection("inventry").findOne({}, function(err, result) {
       if (err) throw err;
-      console.log(result.name);
+      console.log(result.email);
       // res.json([
       //   {id :1, email:response.email,password:response.password}
        
@@ -105,5 +108,72 @@ router.get('/empLeave', function(req, res, next) {
 
   });
 
+
+  
+
+  router.get('/inform', function(req, res, next) {
+    response = {
+      projectId:req.query.projectId
+ 
+   };
+//
+   
+
+   MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("hr");
+  //  var query = {employeeId: response.empId,status:"Approved",type:"SHORTLEAVE"};
+      var query = {projectName: "SecondYear Project"};
+    // dbo.collection("projects").find(query).toArray(function(err, result) {
+       dbo.collection("projects").find({}).toArray(function(err, result) {
+      if (err) throw err;
+      //console.log();
+      var o_id = new ObjectId(result[result.length-1].allocation[0]);
+      var query = {_id:o_id};
+      dbo.collection("employees").findOne(query, function(err, result1) {
+        if (err) throw err;
+        // console.log(result1.email);
+        sendMail(result1.email);
+      });
+      
+      
+      db.close();
+    });
+  });
+  
+  // res.json(
+  //   {allocated :allocated, medical:medical,halfDay :halfDay, shortLeave:shortLeave}
+   
+  // );
+
+  });
+
+var sendMail=(email)=>{
+  // console.log(email);
+  
+ var transporter = nodemailer.createTransport({
+  host: 'smtp.hostinger.com',
+  port: 587,
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: 'service@hotelforyou.xyz',
+    pass: 'oGxJe1jk6=oPi@2!zz'
+  }
+});
+
+var mailOptions = {
+  from: 'service@hotelforyou.xyz',
+  to: email,
+  subject: 'Project Assignned',
+  text: 'You Are Assigned To A Project. Please Login To Your Account  '
+}
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+}
 module.exports = router;
 

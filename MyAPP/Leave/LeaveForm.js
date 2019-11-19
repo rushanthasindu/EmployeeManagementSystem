@@ -140,7 +140,7 @@ class LeaveForm extends Component {
                 // ... You can check the source to find the other keys.
                 }}
                 onDateChange= {this.handleStartDate}/>
-         <Text style={{color: 'white',fontSize: 20,}}>endDate Date</Text>
+         <Text style={{color: 'white',fontSize: 20,}}>End Date</Text>
          <DatePicker
             style={{width: 200}}
             date={this.state.endDate}

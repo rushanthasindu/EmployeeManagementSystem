@@ -91,7 +91,7 @@ class Home extends React.Component {
           </div>
           <div class="card">
           <div >
-        <h1>Add New Inventry...</h1>
+        <h1>Add New Inventory...</h1>
         <form onSubmit={this.handleSubmit}>
     <label>
       Item Code:

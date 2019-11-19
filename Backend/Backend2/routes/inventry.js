@@ -60,10 +60,38 @@ MongoClient.connect(url, function(err, db) {
       ]);
      
     });
+    if (balance-response.qty) sendMail();
     db.close();
   });
 });
 
+var sendMail=(email)=>{
+  // console.log(email);
+  
+ var transporter = nodemailer.createTransport({
+  host: 'smtp.hostinger.com',
+  port: 587,
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: 'service@hotelforyou.xyz',
+    pass: 'oGxJe1jk6=oPi@2!zz'
+  }
+});
+
+var mailOptions = {
+  from: 'service@hotelforyou.xyz',
+  to: 'minor@gmail.com',
+  subject: 'Items Running out',
+  text: 'Some items are running out. please Chevk it out '
+}
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+}
   // MongoClient.connect(url, function(err, db) {
   //   if (err) throw err;
   //   var dbo = db.db("hr");
@@ -115,6 +143,42 @@ router.get('/addNew', function(req, res0, next) {
      
     // ]);
   });
+
+  
+  
+//   router.get('/inform', function(req, res, next) {
+//     response = {
+//       empID:req.query.projectId
+ 
+//    };
+// //
+   
+
+//    MongoClient.connect(url, function(err, db) {
+//     if (err) throw err;
+//     var dbo = db.db("hr");
+
+ 
+//       var o_id = new ObjectId(response.email);
+//       var query = {_id:o_id};
+//       dbo.collection("employees").findOne(query, function(err, result1) {
+//         if (err) throw err;
+//         // console.log(result1.email);
+//         sendMail(result1.email);
+//       });
+      
+//       res.json([{status:true}]);
+//       db.close();
+//     });
+//   });
+  
+//   // res.json(
+//   //   {allocated :allocated, medical:medical,halfDay :halfDay, shortLeave:shortLeave}
+   
+//   // );
+
+
+// }
 
 module.exports = router;
 

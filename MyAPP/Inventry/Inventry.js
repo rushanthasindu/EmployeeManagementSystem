@@ -7,22 +7,7 @@ import PromptExample from "./Prompt"
 
 
 const Home = () => {
-//   console.log ("test");
-//     fetch('http://192.168.8.100/inventry/', {
-//          method: 'GET'
-//       })
-//       .then((response) => response.json())
-//       .then((responseJson) => {
-//          console.log(responseJson);
-//         //  this.setState({
-//         //     items: responseJson
-//         //  })
-//       })
-//       .catch((error) => {
-//          console.error(error);
-//       });
 
-//    onPress = {goToAbout}  style = {{ margin: 128 }}
    return (
    
        <PromptExample/>

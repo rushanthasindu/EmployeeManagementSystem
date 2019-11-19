@@ -92,7 +92,7 @@ class ScrollViewExample extends Component {
                 visible: true,
                 itemDescription:item.description,
                 itemId:item._id,
-                 itemCode:item.itemCode
+               itemCode:item.itemCode
                 
              });
            }}
@@ -121,6 +121,7 @@ class ScrollViewExample extends Component {
                <TextInput style = {styles.input}
                // underlineColorAndroid = "transparent"
                placeholder = "Quantity"
+               keyboardType='numeric'
                placeholderTextColor = "#9a73ef"
                autoCapitalize = "none"
                onChangeText = {this.handleqty}/>
@@ -132,9 +133,7 @@ class ScrollViewExample extends Component {
                }>
                <Text style = {styles.submitButtonText}> Submit </Text>
             </TouchableOpacity>
-           <Text style = {styles.text}>
-                        {this.state.itemId}
-                     </Text>
+          
            </ModalContent>
          </Modal>
        </View>
@@ -167,7 +166,7 @@ const styles = StyleSheet.create ({
       color: '#4f603c'
    },
     submitButton: {
-      backgroundColor: '#7a42f4',
+      backgroundColor: 'blue',
       padding: 10,
       margin: 15,
       height: 40,

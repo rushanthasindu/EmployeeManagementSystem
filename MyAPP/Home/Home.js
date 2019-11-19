@@ -3,7 +3,7 @@ import { TouchableOpacity, Text,View,  StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Login from '../Login/Login'
 import {AsyncStorage} from 'react-native';
-import { Image } from 'react-native'
+import { Image ,TouchableHighlight,} from 'react-native'
 import {
    Button
  } from 'react-native-elements'
@@ -43,26 +43,14 @@ const Home = (empId) => {
          </TouchableOpacity> */}
         
 
-         <SocialIcon
-  title='       Inventry        '
-  button
-  large
-  style=' padding: 205'
- 
-  type='instagram'
-  onPress={goToInventry}
-/>
+        <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={goToInventry}>
+          <Text style={styles.loginText}>Inventry</Text>
+        </TouchableHighlight>
+        <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={goToLeave}>
+          <Text style={styles.loginText}>Leave</Text>
+        </TouchableHighlight>
+        
 
-<SocialIcon
-  title='       Leave        '
-  button
-  large
-  style=' padding: 205'
- 
-  type='codepen'
-  onPress={goToLeave}
-/>
-  
  
       </View >
       
@@ -76,7 +64,7 @@ const styles = StyleSheet.create ({
       flex: 1,
       justifyContent: 'center',
        alignItems: 'center',
-       backgroundColor: '#ba03fc',
+       backgroundColor: 'lightblue',
       
     },
     btn1: {
@@ -99,5 +87,43 @@ const styles = StyleSheet.create ({
        padding: 25,
        borderColor: 'black',
        backgroundColor: 'blue'
+    },
+    inputContainer: {
+        borderBottomColor: '#F5FCFF',
+        backgroundColor: '#FFFFFF',
+        borderRadius:30,
+        borderBottomWidth: 1,
+        width:250,
+        height:45,
+        marginBottom:20,
+        flexDirection: 'row',
+        alignItems:'center'
+    },
+    inputs:{
+        height:45,
+        marginLeft:16,
+        borderBottomColor: '#FFFFFF',
+        flex:1,
+    },
+    inputIcon:{
+      width:30,
+      height:30,
+      marginLeft:15,
+      justifyContent: 'center'
+    },
+    buttonContainer: {
+      height:45,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom:20,
+      width:250,
+      borderRadius:30,
+    },
+    loginButton: {
+      backgroundColor: "#00b5ec",
+    },
+    loginText: {
+      color: 'white',
     }
  })

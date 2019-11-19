@@ -32,6 +32,10 @@ const allocationOptions =[
     { value: 'ALLOCATED', label: 'Allocated' },
     { value: 'FREE', label: 'Non Allocated' },
 ];
+const genderOptions =[
+    { value: 'MALE', label: 'MALE' },
+    { value: 'FEMALE', label: 'FEMALE' },
+];
 
 const RoleOptions =[
     { value: 'GM', label: 'Project Manager' },
@@ -109,6 +113,9 @@ const styles = theme => ({
 });
 
 class AddVendor extends Component {
+    state={
+        data:[]
+    }
   
     handleChange = prop => event => {
         const { dispatch } = this.props;
@@ -126,6 +133,22 @@ class AddVendor extends Component {
             const { dispatch } = this.props;
             dispatch(vendorAction.getVendorById(params.id));
         }
+        fetch('http://192.168.8.100:8000/employee/', {
+            method: 'GET'
+         })
+         .then((response) => response.json())
+         .then((responseJson) => {
+            //console.log(responseJson);
+                  this.setState({
+                     data: responseJson
+                  })
+               //console.log(this.state.data);
+               })
+               .catch((error) => {
+                  this.setState({
+                  data: '0'
+               })
+               });
     }
 
     //  validateEmail(inputText)
@@ -143,10 +166,16 @@ class AddVendor extends Component {
 
     handleClick(event){
         
-        if(this.props.vendor.firstName!="" ||this.props.vendor.lastName!=""||this.props.vendor.address!=""||this.props.vendor.city!=""||this.props.vendor.postalCode!==""||this.props.vendor.skills!=""||this.props.vendor.email!=""||this.props.vendor.role!=""||this.props.vendor.password!=""){
+        if(this.props.vendor.empId!="" ||this.props.vendor.firstName!="" ||this.props.vendor.lastName!=""||this.props.vendor.address!=""||this.props.vendor.city!=""||this.props.vendor.postalCode!==""||this.props.vendor.skills!=""||this.props.vendor.email!=""||this.props.vendor.role!=""||this.props.vendor.password!="" ||this.props.vendor.religion!=""){
        
 
-
+            for (var i=0;i<this.state.data.length;i++){
+                    if (this.state.data[i].email==this.props.vendor.email)
+                     {
+                         alert("Email Address is already used")
+                        return false;
+                    }
+            }
 
         if(this.validEmailRegex.test(this.props.vendor.email)){
         const { match : {params } } = this.props;
@@ -237,7 +266,7 @@ class AddVendor extends Component {
                             <Paper className={classes.contentRoot} elevation={1}>
                                 <form className={classes.container}>
                                     <Grid container spacing={24}>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={12}>
                                             <TextField
                                                 id="empId"
                                                 label="Employee ID"
@@ -372,7 +401,7 @@ class AddVendor extends Component {
                                         <Grid item xs={6}>
                                             <TextField
                                                 id="city"
-                                                label="City"
+                                                label="Telephone No"
                                                 multiline
                                                 rowsMax="4"
                                                 className={classes.textField}
@@ -384,16 +413,27 @@ class AddVendor extends Component {
                                         </Grid>
                                         <Grid container spacing={24}>
                                         <Grid item xs={6}>
-                                            <TextField
-                                                id="country"
-                                                label="Country"
-                                                multiline
-                                                rowsMax="4"
-                                                className={classes.textField}
-                                                value={this.props.vendor.country || ''}
-                                                onChange={this.handleChange('country')}
-                                                margin="normal"
-                                            />
+                                        <TextField
+                                            id="status"
+                                            select
+                                            label="Gender"
+                                            className={classes.textField}
+                                            value={this.props.vendor.status || ''}
+                                            onChange={this.handleChange('status')}
+                                            SelectProps={{
+                                            MenuProps: {
+                                                className: classes.menu,
+                                            },
+                                            }}
+                                            helperText="Please select Employee's status"
+                                            margin="normal"
+                                        >
+                                            {genderOptions.map(option => (
+                                                <option key={option.value} value={option.value}>
+                                                    {option.label}
+                                                </option>
+                                                ))}
+                                        </TextField>
                                         </Grid>
                                         <Grid item xs={6}>
                                             <TextField

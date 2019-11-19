@@ -12,19 +12,19 @@ import Typography from '@material-ui/core/Typography';
 import { withRouter } from 'react-router-dom';
 import './login.component.css';
 import logo from '../logo.png'; // with import
+import back from '../back.png'; // with import
 
 
 const styles = theme => ({
     root: {
       display: 'flex',
-      flexWrap: 'wrap',
+      flexWrap: 'wrap',  
     },
     container: {
         display: 'flex',
         flexWrap: 'wrap',
-        
+    // image: url("./back.png");
     },
-
     margin: {
       margin: theme.spacing.unit,
     },
@@ -36,22 +36,21 @@ const styles = theme => ({
         marginRight: theme.spacing.unit,
         width: 200,
     },
-
     paper: {
         // backgroundColor:"#00c5fb",
         padding: theme.spacing.unit * 2,
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
-
     button: {
         margin: theme.spacing.unit,
     },
-
     input: {
         display: 'none',
     },
   });
+
+
 
   
 class Login extends Component {
@@ -86,7 +85,7 @@ class Login extends Component {
             dispatch(userActions.login(username, password));
         }
     }
-
+    
     resetPassword = event =>{
       if (this.state.username!='admin@gmail.com'){
         fetch('http://192.168.8.100:3001/users/resetPassword/?email='+this.state.username, {

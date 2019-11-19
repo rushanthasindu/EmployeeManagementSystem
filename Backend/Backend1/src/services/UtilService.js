@@ -178,7 +178,8 @@ async function getTopEmployeesBySkill(req, res, next) {
     const skill = req.params.skill;
     const employees = await Employee.find();
     const employeesWithSkill = employees.filter(employee =>
-      employee.skills.includes(skill)
+      employee.skills.includes(skill),employee =>
+      employee.status.includes("FREE")
     );
     const sortedEmployeeList = _.orderBy(
       employeesWithSkill,

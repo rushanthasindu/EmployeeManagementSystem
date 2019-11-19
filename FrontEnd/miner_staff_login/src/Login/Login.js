@@ -34,7 +34,7 @@ class Login extends Component {
      return (
         <div className="App">
         <div className="container">
-            <button id="b1" onClick ={this.try}>Click mennnnnnnnn</button>
+            <button id="b1" onClick ={this.try}>Login</button>
             <Route path="/hello" component={Home}/>
         </div>
       </div>

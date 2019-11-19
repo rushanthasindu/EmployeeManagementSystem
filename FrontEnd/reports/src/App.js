@@ -19,8 +19,8 @@ class Login extends Component {
         this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
-      try = () => {
-        // this.setState({auth:false })
+     try = () => {
+         // this.setState({auth:false })
         // this.props.history.push('/hello');
     }
   
