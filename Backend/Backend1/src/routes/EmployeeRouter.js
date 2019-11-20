@@ -21,9 +21,9 @@ employeeRouter.post("/", async (req, res) => {
   const {
     firstName,
     empId,
-    lastName,
-    address,
-    religion,
+     lastName,
+   address,
+     religion,
     city,
     country,
     postalCode,
@@ -32,16 +32,16 @@ employeeRouter.post("/", async (req, res) => {
     email,
     role,
     manager,
-    password,
+    password
   } = req.body;
   const employee = new Employee({
     firstName,
     lastName,
-    address,
-    city,
+     address,
+     city,
     country,
     postalCode,
-    religion,
+     religion,
     empId,
     status,
     skills,

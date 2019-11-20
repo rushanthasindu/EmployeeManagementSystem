@@ -414,18 +414,18 @@ class AddVendor extends Component {
                                         <Grid container spacing={24}>
                                         <Grid item xs={6}>
                                         <TextField
-                                            id="status"
+                                            id="country"
                                             select
                                             label="Gender"
                                             className={classes.textField}
-                                            value={this.props.vendor.status || ''}
-                                            onChange={this.handleChange('status')}
+                                            value={this.props.vendor.country || ''}
+                                            onChange={this.handleChange('country')}
                                             SelectProps={{
                                             MenuProps: {
                                                 className: classes.menu,
                                             },
                                             }}
-                                            helperText="Please select Employee's status"
+                                            helperText="Please select Employee's Gender"
                                             margin="normal"
                                         >
                                             {genderOptions.map(option => (

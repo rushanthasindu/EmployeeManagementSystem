@@ -3,6 +3,7 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 var ObjectId = require('mongodb').ObjectId;
+var nodemailer = require('nodemailer');
 router.use((req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*')
   next()
@@ -286,7 +287,7 @@ router.get('/empLeave', function(req, res, next) {
   
   router.get('/inform', function(req, res, next) {
     response = {
-      empID:req.query.projectId
+      empID:req.query.empID
  
    };
 //
@@ -297,12 +298,15 @@ router.get('/empLeave', function(req, res, next) {
     var dbo = db.db("hr");
 
  
-      var o_id = new ObjectId(response.email);
+      var o_id = new ObjectId(response.empID);
       var query = {_id:o_id};
-      dbo.collection("employees").findOne(query, function(err, result1) {
+      dbo.collection("employees").findOne({}, function(err, result1) {
+       // dbo.collection("employees").find({}).toArray(function(err, result) {
+      // dbo.collection("employees").find({}).toArray(function(err, result1) {
+      // dbo.collection("employees").findOne(query, function(err, result1) {
         if (err) throw err;
-        // console.log(result1.email);
-        sendMail(result1.email);
+         console.log(result1);
+         sendMail(result1.email);
       });
       
       res.json([{status:true}]);
@@ -332,8 +336,8 @@ var sendMail=(email)=>{
 var mailOptions = {
   from: 'service@hotelforyou.xyz',
   to: email,
-  subject: 'Project Assignned',
-  text: 'You Are Assigned To A Project. Please Login To Your Account  '
+  subject: 'Leave Request',
+  text: 'An Employee has requested for a leave. Please Login to Your Account  '
 }
 transporter.sendMail(mailOptions, function(error, info){
   if (error) {

@@ -8,7 +8,7 @@ import {
 import EmpReport from "../EmpReport/EmpReport"
 import LeaveReport from "../LeaveReport/LeaveReport"
 
-import EmpReport2 from "../EmpReport/EmpReport2"
+import EmpReport2 from "../EmpReport/EmpReport2"// Project Report
 import LeaveReport2 from "../LeaveReport/LeaveReport2"
 import AppReport2 from "../AppReport/AppReport2"
 

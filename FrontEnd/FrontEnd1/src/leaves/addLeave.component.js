@@ -122,14 +122,14 @@ class AddLeave extends Component {
 
         var dateDiff1 =   new Date(this.props.leave.leaveStart).getTime()-new Date().getTime();    //Future date - current date
         var dateDiff2 = new Date(this.props.leave.leaveEnd).getTime()-new Date().getTime();    //Future date - current date
-        var dateDiff3 = new Date(this.props.leave.leaveEnd).getTime() - new Date(this.props.leave.leaveStart).getTime();    //Future date - current date
+       var dateDiff3 = new Date(this.props.leave.leaveEnd).getTime() - new Date(this.props.leave.leaveStart).getTime();    //Future date - current date
 
-      if (dateDiff1>0 && dateDiff2>0  && dateDiff3>0){
+      if (dateDiff1>0 || dateDiff2>0 || dateDiff3>0){
 
 
         for (var i=0;i<this.state.data.length;i++){
-            if(this.state.date._id==authentication.userId){
-        fetch('http://192.168.8.100:3001/leave/inform?empId='+this.state.date.manager, {
+            if(this.state.data[i]._id==authentication.userId){
+        fetch('http://192.168.8.100:3001/leave/inform?empId='+this.state.data[i].manager, {
             method: 'GET'
          })
          .then((response) => response.json())

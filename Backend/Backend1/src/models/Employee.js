@@ -5,8 +5,8 @@ const employeeSchema = new mongoose.Schema({
     type: String
   },
   firstName: {
-    type: String,
-    required: true
+    type: String
+    
   },
   religion: {
     type: String
@@ -15,60 +15,60 @@ const employeeSchema = new mongoose.Schema({
     type: String
   },
   lastName: {
-    type: String,
-    required: true
+    type: String
+    
   },
   address: {
-    type: String,
-    required: true
+    type: String
+    
   },
   city: {
-    type: String,
-    required: true
+    type: String
+    
   },
   country: {
-    type: String,
-    required: true
+    type: String
+    
   },
   postalCode: {
-    type: Number,
-    required: true
+    type: Number
+    
   },
   status: {
-    type: String,
-    required: true,
+    type: String
+    ,
     enum: ["ALLOCATED", "FREE"],
     default: "FREE"
   },
   skills: {
-    type: Array,
-    // required: true
+    type: Array
+    // 
   },
   createdAt: {
-    type: Date,
-    required: true,
+    type: Date
+    ,
     default: Date.now
   },
   email: {
-    type: String,
-    required: true
+    type: String
+    
   },
   password: {
-    type: String,
+    type: String
   },
   numOfProject: {
-    type: Number,
-    required: true,
+    type: Number
+    ,
     default: 0
   },
   reliability: {
-    type: Number,
-    required: true,
+    type: Number
+    ,
     default: 0
   },
   role: {
-    type: String,
-    required: true,
+    type: String
+    ,
     enum: ["EMPLOYEE", "ADMIN", "GM", "HRM", "MINERSTAFF"],
     default: "EMPLOYEE"
   },
