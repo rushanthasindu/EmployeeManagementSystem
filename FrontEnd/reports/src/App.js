@@ -85,7 +85,7 @@ class Login extends Component {
     if (this.state.auth){
      return (
        <div>
-         <br/> <br/>
+         {/* <br/> <br/>
          <br/>
          <br/>
       <img class='center' src={logo} />
@@ -102,12 +102,12 @@ class Login extends Component {
          
           <input type="password" value={this.state.password} onChange={this.handleChangePassword} />
        
-        <button class="btn" id="b1" onClick ={this.try}>Login</button>
-        {/* <Route path="/hello" component={Home}/> */}
+        <button class="btn" id="b1" onClick ={this.try}>Login</button>*/}
+        <Route path="/hello" component={Home}/>
 
         
-      </form>
-      </div>
+      {/* </form>
+      </div>  */}
       </div>
      )}
      else return(<Route path="/hello" component={Home}/>)

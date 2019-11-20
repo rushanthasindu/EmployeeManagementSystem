@@ -20,7 +20,7 @@ async function getLeaveById(req, res, next) {
   res.leave = leave;
   next();
 }
-
+  
 /**
  * @description fetch employee object by employee Id
  */

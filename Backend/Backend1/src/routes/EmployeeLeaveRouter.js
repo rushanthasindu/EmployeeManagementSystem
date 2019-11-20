@@ -37,28 +37,8 @@ EmployeeLeaveRouter.post("/", async (req, res) => {
   });
 
   try {
-    const newLeave = await leaveRequest.save();
-    res.status(201).json(newLeave);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
-
-// Get leave by Id
-EmployeeLeaveRouter.get("/:id", service.getLeaveById, (req, res) => {
-  res.json(res.leave);
-});
-
-// Updating leave By Id
-EmployeeLeaveRouter.put("/:id", service.getLeaveById, async (req, res) => {
-  const keyList = Object.keys(req.body);
-  keyList.map(key => {
-    if (req.body[key] != null) {
-      res.leave[key] = req.body[key];
-    }
-  });
-  try {
-    const updatedLeave = await res.leave.save();
+    const newLeave = await leaveRequ
+    eave.save();
     res.json(updatedLeave);
   } catch {
     res.status(400).json({ message: err.message });
